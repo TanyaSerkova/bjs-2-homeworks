@@ -85,7 +85,58 @@ class PrintEditionItem {
             return null;
         }
     }
+}
+
+
+class Student{
+    constructor(name){
+    this.name = name;
+    this.marks = {};
+    }
+        
+    addMark(mark, subject){
+        if (mark < 2 || mark > 5) {
+            return
+        } else if ([subject] in this.marks === false) {
+            this.marks[subject] = []};
+            this.marks[subject].push(mark);
+        }
+
+    getAverageBySubject(subject){
+        if ([subject] in this.marks === false) {
+            return 0
+        }
+        return (this.marks[subject].reduce(
+            function (acc, number) {return acc + number}, 0) 
+            / this.marks[subject].length)
     }
 
+    getAverage(){
+        let subjects = Object.keys(this.marks);
+        if (subjects.length === 0 ) {
+            return 0
+        }
+        let averageMark = 0;
+        let averageMarks = [];
+        for (let i = 0; i < subjects.length; i++) {
+            averageMark = this.getAverageBySubject(subjects[i]);
+            averageMarks.push(averageMark);
+        }
 
-    
+        return  averageMarks.reduce(function (currentSum, currentNumber) {
+        return currentSum + currentNumber
+      }, 0) / subjects.length
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
